@@ -11,23 +11,33 @@ const getPaginationQueryString = link => {
   return url.parse(githubLink).query;
 };
 
+const handlError = (res, error) => {
+  if (error.response) {
+    res
+      .status(error.response.status)
+      .json({ message: error.response.data.message });
+  } else if (error.request) {
+    res.status(400).json({ message: "The request couldn't be processed." });
+  } else {
+    res
+      .status(500)
+      .json({ message: "Something wen't wrong, try again later!" });
+  }
+};
+
 router.get("/users", (req, res) => {
   const perPage = req.query.per_page || 30;
   const since = req.query.since || 0;
   API.get(`${req.path}?since=${since}&per_page=${perPage}`)
     .then(resp => {
       const base = `${req.protocol}://${req.get("host")}`;
-      const next = `${base}?${getPaginationQueryString(resp.headers.link)}`;
+      const next = `${base}${req.path}?${getPaginationQueryString(
+        resp.headers.link
+      )}`;
       res.json({ users: resp.data, next });
     })
-    .catch(resp => {
-      if (resp.response) {
-        res
-          .status(resp.response.status)
-          .json({ message: resp.response.data.message });
-      } else {
-        res.status(500).json({ message: resp });
-      }
+    .catch(error => {
+      handlError(res, error);
     });
 });
 
@@ -37,14 +47,8 @@ router.get("/users/:username/details", (req, res) => {
     .then(resp => {
       res.json(resp.data);
     })
-    .catch(resp => {
-      if (resp.response) {
-        res
-          .status(resp.response.status)
-          .json({ message: resp.response.data.message });
-      } else {
-        res.status(500).json({ message: "Service Unavailable" });
-      }
+    .catch(error => {
+      handlError(res, error);
     });
 });
 
@@ -53,14 +57,8 @@ router.get("/users/:username/repos", (req, res) => {
     .then(resp => {
       res.json(resp.data);
     })
-    .catch(resp => {
-      if (resp.response) {
-        res
-          .status(resp.response.status)
-          .json({ message: resp.response.data.message });
-      } else {
-        res.status(500).json({ message: "Service Unavailable" });
-      }
+    .catch(error => {
+      handlError(res, error);
     });
 });
 
