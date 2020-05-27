@@ -9,7 +9,7 @@ const GithubUsers = () => {
   const [nextPage, setNextPage] = useState();
 
   const getInitialPath = rowsPerPage => {
-    return `/users?since=${0}&per_page=${rowsPerPage}`;
+    return `users?since=${0}&per_page=${rowsPerPage}`;
   };
 
   const getUsers = path => {

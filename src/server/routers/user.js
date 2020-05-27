@@ -27,8 +27,7 @@ router.get("/users", (req, res) => {
   const since = req.query.since || 0;
   API.get(`${req.path}?since=${since}&per_page=${perPage}`)
     .then(resp => {
-      const base = `${req.protocol}://${req.get("host")}`;
-      const next = `${process.env.API_ROOT}${
+      const next = `${process.env.BASE_API}${
         req.path
       }?${getPaginationQueryString(resp.headers.link)}`;
       res.json({ users: resp.data, next });
