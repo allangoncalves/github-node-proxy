@@ -1,16 +1,17 @@
 {
-  "name": "simple-react-full-stack",
+  "name": "github-node-proxy",
   "version": "1.0.0",
-  "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
+  "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack. By Sandeep Raveesh",
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
+    "heroku-postbuild": "webpack -p",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Sandeep Raveesh",
+  "author": "Allan Goncalves",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.10.0",
