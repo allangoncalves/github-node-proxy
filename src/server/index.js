@@ -13,10 +13,10 @@ app.use(express.static("dist"));
 app.use("/api", router);
 
 if (process.env.NODE_ENV === "production") {
-  // // Handle React routing, return all requests to React app
-  // app.get("*", function(req, res) {
-  //   res.sendFile("dist/index.html");
-  // });
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile("dist/index.html");
+  });
 }
 
 app.listen(process.env.PORT || 8080, () =>
