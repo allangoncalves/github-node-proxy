@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-var path = require("path");
+const path = require("path");
 
 const app = express();
 var bodyParser = require("body-parser");
@@ -13,11 +13,11 @@ app.use("/api", router);
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, "dist")));
+  app.use(express.static("dist"));
 
   // Handle React routing, return all requests to React app
   app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "dist", "index.html"));
+    res.sendFile("dist/index.html", { root: "." });
   });
 }
 
