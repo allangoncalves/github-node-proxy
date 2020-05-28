@@ -16,9 +16,12 @@ const GithubUsers = () => {
     api
       .get(path)
       .then(res => {
-        console.log(res);
-        setUsers(res.data.users);
-        setNextPage(res.data.next);
+        if (res.data.users) {
+          setUsers(res.data.users);
+        }
+        if (res.data.next) {
+          setNextPage(res.data.next);
+        }
       })
       .catch(res => console.log(res));
   };
