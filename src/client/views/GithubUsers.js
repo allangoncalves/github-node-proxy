@@ -9,7 +9,7 @@ const GithubUsers = () => {
   const [nextPage, setNextPage] = useState();
 
   const getInitialPath = rowsPerPage => {
-    return `api/users?since=${0}&per_page=${rowsPerPage}`;
+    return `users?since=${0}&per_page=${rowsPerPage}`;
   };
 
   const getUsers = path => {
@@ -40,7 +40,6 @@ const GithubUsers = () => {
   }, []);
   return (
     <>
-      <p>{process.env.BASE_API}</p>
       <UsersTable
         users={users}
         page={pageNumber}

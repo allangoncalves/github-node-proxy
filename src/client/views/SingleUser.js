@@ -19,11 +19,15 @@ const SingleUser = () => {
 
   const classes = useStyles();
   useEffect(() => {
-    api.get(`api/users/${username}/details`).then(res => {
-      setUser(res.data);
+    api.get(`users/${username}/details`).then(res => {
+      if (res.data) {
+        setUser(res.data);
+      }
     });
-    api.get(`api/users/${username}/repos`).then(res => {
-      setRepos(res.data);
+    api.get(`users/${username}/repos`).then(res => {
+      if (res.data) {
+        setRepos(res.data);
+      }
     });
   }, []);
   return (

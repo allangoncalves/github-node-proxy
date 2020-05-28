@@ -39,6 +39,7 @@ router.get("/users", (req, res) => {
 
 router.get("/users/:username/details", (req, res) => {
   const path = req.path.split("/details")[0];
+  console.log(path);
   API.get(path)
     .then(resp => {
       res.json(resp.data);
