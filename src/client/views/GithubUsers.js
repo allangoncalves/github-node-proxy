@@ -36,13 +36,16 @@ const GithubUsers = () => {
     getUsers(getInitialPath(rowsPerPage));
   }, []);
   return (
-    <UsersTable
-      users={users}
-      page={pageNumber}
-      handleChangePage={handlePageChange}
-      rowsPerPage={rowsPerPage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
-    ></UsersTable>
+    <>
+      <p>{process.env.BASE_API}</p>
+      <UsersTable
+        users={users}
+        page={pageNumber}
+        handleChangePage={handlePageChange}
+        rowsPerPage={rowsPerPage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      ></UsersTable>
+    </>
   );
 };
 
