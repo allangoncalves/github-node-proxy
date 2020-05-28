@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("dist"));
 
   // Handle React routing, return all requests to React app
-  // app.get("*", function(req, res) {
-  //   res.sendFile("dist/index.html", { root: "." });
-  // });
+  app.get("*", function(req, res) {
+    res.sendFile("dist/index.html", { root: "." });
+  });
 }
 
 
