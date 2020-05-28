@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const URL = `${process.env.ROOT_API}/api`;
+const API_ROOT = "https://github-nodejs-proxy.herokuapp.com";
 
 const api = axios.create({
-  baseURL: URL
+  baseURL: `${API_ROOT}/api`
 });
 
 export default api;
