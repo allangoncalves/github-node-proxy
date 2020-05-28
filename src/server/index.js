@@ -21,6 +21,8 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(process.env.PORT || 8080, () =>
-  console.log(`Listening on port ${process.env.PORT || 8080}!`)
-);
+
+app.listen(process.env.PORT || 8080, () => {
+  console.log(process.env.BASE_API);
+  console.log(`Listening on port ${process.env.PORT || 8080}!`);
+});
